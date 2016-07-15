@@ -3,10 +3,10 @@
 
 using namespace std;
 
-void printBiArray(int* head, int rows, int columns) {
+void printBiArray(int** head, int rows, int columns) {
 	//using pointer to traverse
-	for (int* row = head; row!= head+ rows; row++) {
-		for (int* p = row; p != head+ rows + columns;p++) {
+	for (int **row = head; row != head+ rows; row++) {
+		for (int *p = *row; p != *row + columns; p++) {
 			cout << *p ;
 			cout << ' ';
 		}
@@ -26,6 +26,7 @@ int main() {
 		numList[i] = new int[columns];
 	}
 
+	// random generate the data in the array
 	random_device rd;
 	mt19937 myGen;
 	myGen.seed(rd());
@@ -39,8 +40,8 @@ int main() {
 		cout << endl;
 	}
 
-	int* head = &numList[0][0];
-	printBiArray(head,rows,columns);
+	
+	printBiArray(numList,rows,columns);
 
 	for (int i = 0; i < rows; i++) {
 		delete[] numList[i];
